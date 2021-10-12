@@ -1,0 +1,31 @@
+.navbar__fondo{
+    background-color: $yellow-500;
+}
+.navbar__brand{
+    font-size: $t-20;
+    color: $blanco;
+    font-weight: $bold;
+}
+
+.navbar__a{
+    color: $blanco;
+}
+.navbar__a:hover{
+    color: $negro;
+}
+.iconos{
+    width: $w-25;
+    height: $h-25;
+}
+.iconos:hover{
+    transform: scale(1.1);
+	transition: transform 0.5s;
+}
+.px-m4{
+    padding-left: 4px;
+    padding-right: 4px;
+}
+.rotate:hover{
+    transform: rotateZ(360deg);
+    transition: 2s;
+}

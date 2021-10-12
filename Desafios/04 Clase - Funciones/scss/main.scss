@@ -1,0 +1,16 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');	
+*{
+	font-family: 'Montserrat', sans-serif;
+}
+
+//Import//
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "_commons";
+@import "_fonts";
+@import "_navbar";
+@import "_productos";
+@import "_content";
+@import "_generales";
+@import "_footer";
+@import "_banner";

@@ -1,0 +1,37 @@
+.bg-tittles{
+    background-color: $yellow-200;
+}
+.titles__productos{
+    font-weight: bold;
+    
+}
+.productos__articulo:hover{
+    background-color: rgba(240, 240, 235, 0.5);
+    font-weight: bolder;
+    transform: scale(1.15);
+    transition: all 1s;
+}
+.productos__articulo--info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.productos__articulo--datos{
+    width: 40%;
+    h5{
+        font-size: 16px;
+    }
+}
+
+.productos__articulo--tallas{
+    display: flex;
+    flex-direction: row;
+    font-size: 10px;
+    color: grey;
+    margin-left: 2px;
+    margin-right: 2px;
+    div{
+        margin: 5px;
+    }
+}
