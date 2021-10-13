@@ -1,4 +1,4 @@
-//Objetos
+    //Objetos
 //Objetos Literales
 const lapicero = {
     color:"verde",

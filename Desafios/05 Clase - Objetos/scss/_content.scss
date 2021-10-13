@@ -1,0 +1,79 @@
+.ancho-50{
+    width: 48%;
+}
+.dis-flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+//Lista horizontal en Conozcanos
+.list__li{
+    background-color: $bg-principal;
+    ul{
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        li{
+            text-decoration: none;
+            a{
+                text-decoration: none;
+                color: white;
+            }
+            a:hover{
+                color: black;
+            }
+        }
+    }
+}
+
+
+//Nosotros y Politicas
+.nosotros__formats, .politicas__format{
+    padding: 6px;
+    h3{
+        font-size: $t-16;
+        font-weight: $bold;
+        padding-top: 6px;
+    }
+    h4{
+        color: $negro;
+        font-size: $t-16;
+        margin-top: 6px; 
+    }
+    p{
+        color: $negro;
+        font-size: $t-14;
+        margin-top: 6px;
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            font-weight: $bold;
+        }
+    }
+}
+
+
+//Acordeon - Preguntas Frecuentes
+.preguntas__formats{
+    padding: 10px;
+    p{
+        color: $negro;
+        font-size: $t-14;
+        margin-top: 6px;
+    }
+    h2{
+        font-weight: bold;
+        button{
+         font-size: $t-16;
+         font-weight: bold;
+        }   
+    }
+}
+
+//Medios de Pago
+.medios__displey{
+    justify-content: space-around;
+}
