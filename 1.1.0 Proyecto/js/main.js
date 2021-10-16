@@ -8,16 +8,20 @@ let costoEnvio = 0
 let producto
 let descuento = 0
 
-function prenda(referencia, tipo, sexo, talla, color, precio, descuento) {
-    this.referencia = referencia
-    this.tipo = tipo
-    this.sexo = sexo
-    this.talla = talla
-    this.color = color
-    this.precio = precio
-    this.descuento = descuento
+//Se defune el objeto prenda
+class prenda{
+    constructor(referencia, tipo, sexo, talla, color, precio, descuento) {
+        this.referencia = referencia
+        this.tipo = tipo
+        this.sexo = sexo
+        this.talla = talla
+        this.color = color
+        this.precio = precio
+        this.descuento = descuento
+    }
 }
 
+//Se definen las variables del objeto prenda
 let vReferecia
 let vTipo
 let vSexo
@@ -29,22 +33,42 @@ let consecutivo
 
 console.log("Listado de Productos")
 
-for (let i = 1; i <= nProductos; i++){
-    console.log("Consecutivo: " + i)
+//Se crean los objetos, se cargan al array prendas y se calcula el subtotal y el descuento
+const prendas = []
+    for (let i = 1; i <= nProductos; i++){
     vReferecia = prompt("Referencia " + i)
-    vTipo = prompt("Tipo? " + i)
-    vSexo = prompt("Sexo? " + i)
-    vTalla = prompt("Talla? " + i)
-    vColor = prompt("Color? " + i)
+    // vTipo = prompt("Tipo? " + i)
+    // vSexo = prompt("Sexo? " + i)
+    // vTalla = prompt("Talla? " + i)
+    // vColor = prompt("Color? " + i)
     vPrecio = parseFloat(prompt("Ingres el precio del producto " + i))
     vDescuento = parseFloat(prompt("Descuento? " + i))
     subtotal = subtotal + vPrecio
-    cantidad = cantidad + 1
     descuento = descuento + vDescuento
-    let producto = new prenda (vReferecia, vTipo, vSexo, vTalla, vColor, vPrecio, vDescuento)
-    console.log(producto)
+    prendas.push(new prenda (vReferecia, vTipo, vSexo, vTalla, vColor, vPrecio, vDescuento))
 }
+console.log(prendas)
 
+//Ordenar con funcion comparar
+function comparar(a, b) {
+    if (a.vPrecio < b.vPrecio){
+        return -1
+    }else if (a.vPrecio > b.vPrecio){
+        return 1
+    }else{
+        return 0
+    }
+}
+prendas.sort(comparar)
+
+//Ordenar Directamente
+prendas.sort(function(a, b){
+    return a.vPrecio - b.vPrecio
+})
+
+console.log(prendas)
+
+//Funcion para calcular el costo de envio
 function fCostoEnvio(ventaBase) {
     if (ventaBase > 100000) {
         costoEnvio = 0
@@ -62,22 +86,27 @@ function fCostoEnvio(ventaBase) {
 console.log("Subtotal: " + subtotal)
 console.log("Descuento: " + descuento)
 
+//Calculo del costo de envio usando la funcion
 fCostoEnvio(subtotal)
 console.log("Costo Envio: " + costoEnvio)
 
+//Funcion para calcular el Iva
 function fIva(base, porcentaje) {
     iva = base * porcentaje
 }
+//Funcion para calcular el total de la venta
 function fTotalVenta(base, envio, iva, descuento) {
     totalVenta = base + envio + iva - descuento
 }
-//Totalizar Venta
+//Calculo del Iva por Funcion
 fIva(subtotal, 0.19)
 console.log("Iva: " + iva)
 
+//Calculo de la Venta Total
 fTotalVenta(subtotal, costoEnvio, iva, descuento)
 console.log("Total Venta: " + totalVenta)
 
+//Funcion contrctura del objeto cliente
 function cliente(nombre, ciudadEnvio, direccionEnvio) {
     this.nombre = nombre
     this.ciudadEnvio = ciudadEnvio
@@ -87,7 +116,7 @@ let nombreCliente
 let ciudadEnvio
 let direccionEnvio
 
-
+//Ingreso de datos del cliente y listo para pagar
 if (totalVenta > 0){
     //Ingresar datos de envio
     alert("Numero de Productos: " + cantidad + "\nValor Venta Neta: " + subtotal + "\nCosto Envio: " + costoEnvio + "\nImpuesto Iva: " + iva + "\nTotal a Pagar: " + totalVenta )
