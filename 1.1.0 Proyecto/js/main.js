@@ -78,9 +78,6 @@ console.log("Iva: " + iva)
 fTotalVenta(subtotal, costoEnvio, iva, descuento)
 console.log("Total Venta: " + totalVenta)
 
-let compraEfectiva = (totalVenta > 0 )
-console.log(compraEfectiva)
-
 function cliente(nombre, ciudadEnvio, direccionEnvio) {
     this.nombre = nombre
     this.ciudadEnvio = ciudadEnvio
@@ -91,36 +88,35 @@ let ciudadEnvio
 let direccionEnvio
 
 
-switch(compraEfectiva){
-    case true :
-        //Ingresar datos de envio
-        alert("Numero de Productos: " + cantidad + "\nValor Venta Neta: " + subtotal + "\nCosto Envio: " + costoEnvio + "\nImpuesto Iva: " + iva + "\nTotal a Pagar: " + totalVenta )
-        let confirmar = parseInt(prompt("Desea confirmar compra? Indique 1 para SI o 0 para NO"))
-        if (confirmar == 1) {
-            nombreCliente = prompt("Ingrese su nombre y apellido")
-            ciudadEnvio = prompt("Ciudad de Envio")
-            direccionEnvio = prompt("Ingrese la Direeción de envio")
-        }
+if (totalVenta > 0){
+    //Ingresar datos de envio
+    alert("Numero de Productos: " + cantidad + "\nValor Venta Neta: " + subtotal + "\nCosto Envio: " + costoEnvio + "\nImpuesto Iva: " + iva + "\nTotal a Pagar: " + totalVenta )
+    let confirmar = parseInt(prompt("Desea confirmar compra? Indique 1 para SI o 0 para NO"))
+    if (confirmar == 1) {
+        nombreCliente = prompt("Ingrese su nombre y apellido")
+        ciudadEnvio = prompt("Ciudad de Envio")
+        direccionEnvio = prompt("Ingrese la Direeción de envio")
+    }
 
-        //Primer validador de datos de envio | Ultima oportunidad de ingresar datos de envio | Sin datos de envio no se puede continuar con la compra
-        if ((confirmar == 1) && ((nombreCliente == "") || (ciudadEnvio == "") || (direccionEnvio == ""))){
-            alert("Error! Ingrese los datos de envio por favor")
-            nombreCliente = prompt("Ingrese su nombre y apellido")
-            ciudadEnvio = prompt("Ciudad de Envio")
-            direccionEnvio = prompt("Ingrese la Direeción de envio")
-        }
+    //Primer validador de datos de envio | Ultima oportunidad de ingresar datos de envio | Sin datos de envio no se puede continuar con la compra
+    if ((confirmar == 1) && ((nombreCliente == "") || (ciudadEnvio == "") || (direccionEnvio == ""))){
+        alert("Error! Ingrese los datos de envio por favor")
+        nombreCliente = prompt("Ingrese su nombre y apellido")
+        ciudadEnvio = prompt("Ciudad de Envio")
+        direccionEnvio = prompt("Ingrese la Direeción de envio")
+    }
 
-        let continua = 0
-        //Proceso final - Si hay error en datos inrgesados. Se anulara el proceso.
-        if ((confirmar == 1) && ((nombreCliente == "") || (ciudadEnvio == "") || (direccionEnvio == ""))){
-            alert("Error! No se han ingresado los datos necesarios. \nProceso Anulado. \nInciel proceso nuevamente")
-            continua = 0
-        }else if ((confirmar == 1) && ((nombreCliente != "") || (ciudadEnvio != "") || (direccionEnvio != ""))){
-            alert("Nombre del Cliente: " + nombreCliente + "\nCiudad de envio: " + ciudadEnvio + "\nDirección de Envio: " + direccionEnvio + "\nValor a Pagar: " + totalVenta)
-            confirmar = parseInt(prompt("Indique Uno(1) para ir a pagar o cero (0) para finalizar"))
-        }
-        let clienteFinal = new cliente(nombreCliente, ciudadEnvio, direccionEnvio)
-        console.log(clienteFinal)
-    default :
-        break
-}    
+    let continua = 0
+    //Proceso final - Si hay error en datos inrgesados. Se anulara el proceso.
+    if ((confirmar == 1) && ((nombreCliente == "") || (ciudadEnvio == "") || (direccionEnvio == ""))){
+        alert("Error! No se han ingresado los datos necesarios. \nProceso Anulado. \nInciel proceso nuevamente")
+        continua = 0
+    }else if ((confirmar == 1) && ((nombreCliente != "") || (ciudadEnvio != "") || (direccionEnvio != ""))){
+        alert("Nombre del Cliente: " + nombreCliente + "\nCiudad de envio: " + ciudadEnvio + "\nDirección de Envio: " + direccionEnvio + "\nValor a Pagar: " + totalVenta)
+        confirmar = parseInt(prompt("Indique Uno(1) para ir a pagar o cero (0) para finalizar"))
+    }
+    let clienteFinal = new cliente(nombreCliente, ciudadEnvio, direccionEnvio)
+    console.log(clienteFinal)
+}else{
+    alert("No hay Productos para Pagar")
+}
