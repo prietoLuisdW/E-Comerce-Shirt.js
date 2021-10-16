@@ -37,10 +37,10 @@ console.log("Listado de Productos")
 const prendas = []
     for (let i = 1; i <= nProductos; i++){
     vReferecia = prompt("Referencia " + i)
-    // vTipo = prompt("Tipo? " + i)
-    // vSexo = prompt("Sexo? " + i)
-    // vTalla = prompt("Talla? " + i)
-    // vColor = prompt("Color? " + i)
+    vTipo = prompt("Tipo? " + i)
+    vSexo = prompt("Sexo? " + i)
+    vTalla = prompt("Talla? " + i)
+    vColor = prompt("Color? " + i)
     vPrecio = parseFloat(prompt("Ingres el precio del producto " + i))
     vDescuento = parseFloat(prompt("Descuento? " + i))
     subtotal = subtotal + vPrecio
@@ -51,19 +51,20 @@ console.log(prendas)
 
 //Ordenar con funcion comparar
 function comparar(a, b) {
-    if (a.vPrecio < b.vPrecio){
+    if (a.precio < b.precio){
         return -1
-    }else if (a.vPrecio > b.vPrecio){
+    }else if (a.precio > b.precio){
         return 1
     }else{
         return 0
     }
 }
 prendas.sort(comparar)
+console.log(prendas)
 
 //Ordenar Directamente
 prendas.sort(function(a, b){
-    return a.vPrecio - b.vPrecio
+    return a.precio - b.precio
 })
 
 console.log(prendas)
