@@ -1,0 +1,3 @@
+Siempre tomar de Bootstrap los link de Html que va en el Head y el script del Js al final del Body.
+
+JSON = JavaScript Object Notation
