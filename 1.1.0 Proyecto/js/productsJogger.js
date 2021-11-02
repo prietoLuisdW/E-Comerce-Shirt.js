@@ -1,12 +1,3 @@
-const joggers = [
-    { ref: "JG01", nombre: "Jogger Lin100 Gris", precio: 54560, material: "Algodon", descuento: 0, stock: 50, imagen: "../imagenes/productos/catalogo/Joger01.jpg", tipo: "jogger" },
-    { ref: "JG02", nombre: "Jogger Lin50 Negro", precio: 58930, material: "licra", descuento: 0, stock: 50, imagen: "../imagenes/productos/catalogo/Joger02.jpg", tipo: "jogger" },
-    { ref: "JG03", nombre: "Jogger Lin100 Negro", precio: 52100, material: "Algodon", descuento: 0, stock: 50, imagen: "../imagenes/productos/catalogo/Joger03.jpg", tipo: "jogger" },
-    { ref: "JG03", nombre: "Jogger Compacto Rojo", precio: 55150, material: "Algodon", descuento: 0, stock: 50, imagen: "../imagenes/productos/catalogo/Joger04.jpg", tipo: "jogger" },
-]
-
-console.log(joggers)
-
 let articulos = document.createElement("div")
 articulos.setAttribute("class", "row mx-1 d-flex justify-content-around")
 

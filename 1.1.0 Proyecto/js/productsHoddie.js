@@ -1,14 +1,3 @@
-const hoddies = [
-    { ref: "HD01", nombre: "Hoddie Azul", precio: 74400, material: "Algodon", descuento: 0, stock: 50, imagen: "../imagenes/productos/catalogo/Hoodies01.jpg", tipo: "hoddie" },
-    { ref: "HD02", nombre: "Jogger Violeta", precio: 74400, material: "Algodon", descuento: 0, stock: 50, imagen: "../imagenes/productos/catalogo/Hoodies02.jpg", tipo: "hoddie" },
-    { ref: "HD03", nombre: "Jogger Rosado", precio: 74400, material: "Algodon", descuento: 0, stock: 50, imagen: "../imagenes/productos/catalogo/Hoodies03.jpg", tipo: "hoddie" },
-    { ref: "HD03", nombre: "Jogger Blanco Mariposa", precio: 72200, material: "Algodon", descuento: 0, stock: 50, imagen: "../imagenes/productos/catalogo/Hoodies04.jpg", tipo: "hoddie" },
-]
-
-console.log(hoddies)
-const allProducts = blusas.concat(hoddies, joggers, ninos, novedades, outfits, parejas, variedades)
-console.log(allProducts)
-
 let articulos = document.createElement("div")
 articulos.setAttribute("class", "row mx-1 d-flex justify-content-around")
 

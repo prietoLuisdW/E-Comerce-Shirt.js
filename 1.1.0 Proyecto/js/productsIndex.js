@@ -5,29 +5,27 @@ const principales = [
     { ref: "JG03", nombre: "Jogger Compacto Rojo", precio: 55150, material: "Algodon", descuento: 0, stock: 50, imagen: "../imagenes/productos/catalogo/Joger01.jpg" },
 ]
 
-console.log(joggers)
-
 let articulos = document.createElement("div")
 articulos.setAttribute("class", "row mx-1 d-flex justify-content-around")
 
-for (const jogger of joggers) {
+for (const principal of principales) {
     let articulo = document.createElement("article")
     articulo.setAttribute("class", "card mx-1 col-lg-3 col-md-6 col-sm-12 my-3 pt-2 productos__articulo")
     let imagen = document.createElement("img")
     imagen.setAttribute("class", "card-img-top")
-    imagen.src = jogger.imagen
+    imagen.src = principal.imagen
     articulo.appendChild(imagen)
     let info = document.createElement("div")
     info.setAttribute("class", "card-body")
     articulo.appendChild(info)
     let nombre = document.createElement("h5")
-    nombre.innerHTML = `<h5 class="card-title text-center"> ${jogger.nombre}</h5>`
+    nombre.innerHTML = `<h5 class="card-title text-center"> ${principal.nombre}</h5>`
     info.appendChild(nombre)
     let precio = document.createElement("h5")
-    precio.innerHTML = `<h5 class="card-title text-center"> $ ${jogger.precio}</h5>`
+    precio.innerHTML = `<h5 class="card-title text-center"> $ ${principal.precio}</h5>`
     info.appendChild(precio)
     let fin = document.createElement("a")
-    fin.innerHTML = `<a id=${jogger.ref} class="btn btn-outline-dark w-100 btn__carrito">Agregar a Carrito</a>`
+    fin.innerHTML = `<a id=${principal.ref} class="btn btn-outline-dark w-100 btn__carrito">Agregar a Carrito</a>`
     info.appendChild(fin)
     articulos.appendChild(articulo)
 }

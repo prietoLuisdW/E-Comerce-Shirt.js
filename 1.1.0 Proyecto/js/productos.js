@@ -38,9 +38,6 @@ const allProducts = [
 console.log(allProducts)
 
 //Crear el mostrador para todos los productos
-let articulos = document.createElement("div")
-articulos.setAttribute("class", "row mx-1 d-flex justify-content-around")
-
 const blusas = allProducts.filter(producto => producto.tipo == "blusa")
 console.log(blusas)
 const hoddies = allProducts.filter(producto => producto.tipo == "hoddie")
@@ -51,34 +48,3 @@ const ninos = allProducts.filter(producto => producto.tipo == "nino")
 console.log(ninos)
 const parejas = allProducts.filter(producto => producto.tipo == "pareja")
 console.log(parejas)
-
-
-
-
-
-
-
-
-
-for (const blusa of blusas) {
-    let articulo = document.createElement("article")
-    articulo.setAttribute("class", "card mx-1 col-lg-3 col-md-6 col-sm-12 my-3 pt-2 productos__articulo")
-    let imagen = document.createElement("img")
-    imagen.setAttribute("class", "card-img-top")
-    imagen.src = blusa.imagen
-    articulo.appendChild(imagen)
-    let info = document.createElement("div")
-    info.setAttribute("class", "card-body")
-    articulo.appendChild(info)
-    let nombre = document.createElement("h5")
-    nombre.innerHTML = `<h5 class="card-title text-center"> ${blusa.nombre}</h5>`
-    info.appendChild(nombre)
-    let precio = document.createElement("h5")
-    precio.innerHTML = `<h5 class="card-title text-center"> $ ${blusa.precio}</h5>`
-    info.appendChild(precio)
-    let fin = document.createElement("a")
-    fin.innerHTML = `<a id=${blusa.ref} class="btn btn-outline-dark w-100 btn__carrito">Agregar a Carrito</a>`
-    info.appendChild(fin)
-    articulos.appendChild(articulo)
-}
-document.getElementById("mostrador").appendChild(articulos)

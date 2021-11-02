@@ -1,8 +1,5 @@
 //consolidar todos los productos en un solo objeto
 
-const allProducts = blusas.concat(hoddies, joggers, ninos, novedades, outfits, parejas, variedades)
-console.log(allProducts)
-
 
 
 
