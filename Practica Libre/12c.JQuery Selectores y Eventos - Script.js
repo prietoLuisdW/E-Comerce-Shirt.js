@@ -64,7 +64,6 @@ function suscribir() {
     });
 }
 
-
 function ordenar() {
     let seleccion = $("#miSeleccion").val();
     //console.log(seleccion);
