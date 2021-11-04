@@ -48,3 +48,4 @@ const ninos = allProducts.filter(producto => producto.tipo == "nino")
 console.log(ninos)
 const parejas = allProducts.filter(producto => producto.tipo == "pareja")
 console.log(parejas)
+
