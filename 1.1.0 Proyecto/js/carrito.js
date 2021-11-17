@@ -1,3 +1,10 @@
 $(document).ready(function() {
-    renderizarCarrito()
+    carrito = localStorage.getItem("listaArticulos")
+    console.log(carrito)
+    if (!carrito) {
+        carritoLimpio()
+        $(".totalVenta").hide()
+    } else {
+        renderizarCarrito()
+    }
 })

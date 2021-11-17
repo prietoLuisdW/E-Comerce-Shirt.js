@@ -59,7 +59,7 @@ function agregarCarrito(nuevoProducto) {
 function carritoLimpio() {
     $("#articulosCarrito").append(`
     <div class="alert alert-primary" role="alert">
-        Opps! No tenemos productos an agregados
+        Opps! No tenemos productos aún agregados
     </div>`)
 
 }
@@ -75,7 +75,9 @@ function renderizarCarrito(carrito) {
     let impuestoIva = 0
     let totalPagar = 0
     let items = elementos.length
-    for (item of elementos) {
+    console.log(items)
+    console.log(elementos)
+    for (let item of elementos) {
         subtotal += item.precio
         descuento += item.descuento
     }
@@ -122,7 +124,7 @@ function renderizarCarrito(carrito) {
             <h5 class="fs-5 "> $${totalPagar}<h5>
         </div>
         <button id="vaciar" class="btn btn-warning btn__carrito fs-5 w-100">Vaciar el Carrito</button>`)
-    $(`#vaciar`).on("clisck", function() {
+    $(`#vaciar`).on("click", function() {
         vaciarCarrito()
     })
     for (let articulo of elementos) {
@@ -148,12 +150,13 @@ function renderizarCarrito(carrito) {
 //Quitar un artuculo del carrito
 function quitarElemento(articulo) {
 
+
 }
 
 //Vaciar el carrieto
 function vaciarCarrito() {
-    carrito = []
-    localStorage.setItem("listaArticulos", JSON.stringify(carrito))
-    renderizarCarrito(carrito)
+    localStorage.clear()
+    $("#articulosCarrito").hide()
+    $(".totalVenta").hide()
     carritoLimpio()
 }
