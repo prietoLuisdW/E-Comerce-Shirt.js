@@ -1,5 +1,4 @@
 //JQuery AJAX
-​
 //GET
 function obtenerDatos() {
     const URLGET = "https://api.itbook.store/1.0/new";
@@ -12,8 +11,8 @@ function obtenerDatos() {
             });
         }
     });
-}​
-obtenerDatos();​
+}
+obtenerDatos();
 //POST
 function enviarDatos() {
     const URLPOST = "https://jsonplaceholder.typicode.com/posts";
@@ -26,8 +25,8 @@ function enviarDatos() {
         console.log("Estado de JSONPlaceholder: " + estado);
         console.log(data);
     });
-}​
-enviarDatos();​
+}
+enviarDatos();
 //JSON LOCAL
 const miJSON = "14c.Ajax con jQuery.json ";
 $("#empleados").prepend('<button id="miBoton">Obtener Empleados</button>');
@@ -44,7 +43,7 @@ $("#miBoton").click(() => {
             }
         }
     });
-});​
+});
 //.AJAX
 $(document).ready(function() {
     //Declaramos la url del API
