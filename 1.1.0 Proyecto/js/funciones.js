@@ -1,12 +1,56 @@
 //
+let productosIndex
+let producto
+let misProductos
+
 $(document).ready(function() {
-    renderizarProductos()
+    importarProductos()
 })
+
+
+function importarProductos() {
+    const miJson = "../json/productos.json"
+    console.log("misPro: " + miJson)
+    $.getJSON(miJson, function(datos, status) {
+        console.log(status)
+        if (status == "success") {
+            misProductos = datos.productos
+            console.log("Mis Productos" + misProductos)
+            productosIndex = misProductos.filter(articulo => articulo.marca == "index")
+            renderizarIndex()
+            renderizarProductos()
+        }
+    })
+}
+
+function renderizarIndex() {
+    //for (let cajon of secciones) {
+    //let productos = allProducts.filter(producto => producto.tipo == cajon.tipo)
+    for (producto of productosIndex) {
+        console.log("Index: " + productosIndex)
+            // contenedor
+        $("#mostradorGeneral").append(`
+                <article class="card mx-1 col-lg-3 col-md-6 col-sm-12 my-3 pt-2 productos__articulo">
+                    <img src=${producto.imagen} class="card-img-top"></img>
+                    <div class="card-body ">
+                        <h5 class="card-title text-center">${producto.nombre}</h5>
+                        <h5 class="card-title text-center">$ ${producto.precio}</h5>
+                        <button id=${producto.ref} class="btn btn-outline-warning btn__carrito fs-6">Comprar</button>
+                    </div>
+                </article>`)
+            //Agregar evento al boton
+        $(`#${producto.ref}`).on("click", function() {
+            agregarCarrito(producto)
+        })
+    }
+    //}
+}
+
 
 function renderizarProductos() {
     //for (let cajon of secciones) {
     //let productos = allProducts.filter(producto => producto.tipo == cajon.tipo)
-    for (let producto of allProducts) {
+    for (producto of misProductos) {
         // contenedor
         $(producto.seccion).append(`
                 <article class="card mx-1 col-lg-3 col-md-6 col-sm-12 my-3 pt-2 productos__articulo">
@@ -55,17 +99,9 @@ function agregarCarrito(nuevoProducto) {
 }
 
 
-//Si no hay elementos en el carrieto saldra una alerta
-function carritoLimpio() {
-    $("#articulosCarrito").append(`
-    <div class="alert alert-primary" role="alert">
-        Opps! No tenemos productos aún agregados
-    </div>`)
-
-}
 
 //Si hay productos en el carrieto, se renderizara
-function renderizarCarrito(carrito) {
+function renderizarCarrito() {
     let elementos = JSON.parse(localStorage.getItem("listaArticulos"))
         //Variables para totalizar
     let subtotal = 0
@@ -123,7 +159,10 @@ function renderizarCarrito(carrito) {
             <h5 class="fs-5"> Total a Pagar:<h5>
             <h5 class="fs-5 "> $${totalPagar}<h5>
         </div>
-        <button id="vaciar" class="btn btn-warning btn__carrito fs-5 w-100">Vaciar el Carrito</button>`)
+        <div class="d-flex">
+        <button id="vaciar" class="m-2 btn btn-warning btn__carrito fs-5 w-100">Vaciar el Carrito</button>
+        <button id="comprar" class="m-2 btn btn-success btn__carrito fs-5 w-100">Finalizar Compra</button>
+        </div>`)
     $(`#vaciar`).on("click", function() {
         vaciarCarrito()
     })
@@ -156,7 +195,16 @@ function quitarElemento(articulo) {
 //Vaciar el carrieto
 function vaciarCarrito() {
     localStorage.clear()
-    $("#articulosCarrito").hide()
+    $("#articulosCarrito").slideUp("slow")
     $(".totalVenta").hide()
     carritoLimpio()
+}
+
+//Si no hay elementos en el carrieto saldra una alerta
+function carritoLimpio() {
+    $("#articulosCarrito").append(`
+    <div class="alert alert-primary" role="alert">
+        Opps! No tenemos productos aún agregados
+    </div>`)
+
 }

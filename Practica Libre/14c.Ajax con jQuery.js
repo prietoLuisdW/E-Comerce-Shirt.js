@@ -28,13 +28,15 @@ function enviarDatos() {
 }
 enviarDatos();
 //JSON LOCAL
-const miJSON = "14c.Ajax con jQuery.json ";
+const miJSON = "14c.Ajax con jQuery.json";
+console.log("Help" + miJSON)
 $("#empleados").prepend('<button id="miBoton">Obtener Empleados</button>');
 $("#miBoton").click(() => {
 
     $.getJSON(miJSON, function(respuesta, estado) {
         if (estado == "success") {
             let misEmpleados = respuesta.usuarios;
+            console.log("Mi: " + misEmpleados)
             for (const empleado of misEmpleados) {
                 $("#empleados").prepend(`<div>
                 <h3>${empleado.nombre}</h3>
