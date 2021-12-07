@@ -9,7 +9,7 @@ let producto
 let descuento = 0
 
 //Se defune el objeto prenda
-class prenda{
+class prenda {
     constructor(referencia, tipo, sexo, talla, color, precio, descuento) {
         this.referencia = referencia
         this.tipo = tipo
@@ -35,7 +35,7 @@ console.log("Listado de Productos")
 
 //Se crean los objetos, se cargan al array prendas y se calcula el subtotal y el descuento
 const prendas = []
-    for (let i = 1; i <= nProductos; i++){
+for (let i = 1; i <= nProductos; i++) {
     vReferecia = prompt("Referencia " + i)
     vTipo = prompt("Tipo? " + i)
     vSexo = prompt("Sexo? " + i)
@@ -45,17 +45,17 @@ const prendas = []
     vDescuento = parseFloat(prompt("Descuento? " + i))
     subtotal = subtotal + vPrecio
     descuento = descuento + vDescuento
-    prendas.push(new prenda (vReferecia, vTipo, vSexo, vTalla, vColor, vPrecio, vDescuento))
+    prendas.push(new prenda(vReferecia, vTipo, vSexo, vTalla, vColor, vPrecio, vDescuento))
 }
 console.log(prendas)
 
 //Ordenar con funcion comparar
 function comparar(a, b) {
-    if (a.precio < b.precio){
+    if (a.precio < b.precio) {
         return -1
-    }else if (a.precio > b.precio){
+    } else if (a.precio > b.precio) {
         return 1
-    }else{
+    } else {
         return 0
     }
 }
@@ -63,7 +63,7 @@ prendas.sort(comparar)
 console.log(prendas)
 
 //Ordenar Directamente
-prendas.sort(function(a, b){
+prendas.sort(function(a, b) {
     return a.precio - b.precio
 })
 
@@ -73,13 +73,13 @@ console.log(prendas)
 function fCostoEnvio(ventaBase) {
     if (ventaBase > 100000) {
         costoEnvio = 0
-    }else if(ventaBase >= 50000){
+    } else if (ventaBase >= 50000) {
         costoEnvio = ventaBase * 0.1
-    }else if(ventaBase > 25000){
+    } else if (ventaBase > 25000) {
         costoEnvio = ventaBase * 0.2
-    }else if(ventaBase > 0){
+    } else if (ventaBase > 0) {
         costoEnvio = 5000
-    }else{
+    } else {
         costoEnvio = 0
     }
 }
@@ -118,9 +118,9 @@ let ciudadEnvio
 let direccionEnvio
 
 //Ingreso de datos del cliente y listo para pagar
-if (totalVenta > 0){
+if (totalVenta > 0) {
     //Ingresar datos de envio
-    alert("Numero de Productos: " + cantidad + "\nValor Venta Neta: " + subtotal + "\nCosto Envio: " + costoEnvio + "\nImpuesto Iva: " + iva + "\nTotal a Pagar: " + totalVenta )
+    alert("Numero de Productos: " + cantidad + "\nValor Venta Neta: " + subtotal + "\nCosto Envio: " + costoEnvio + "\nImpuesto Iva: " + iva + "\nTotal a Pagar: " + totalVenta)
     let confirmar = parseInt(prompt("Desea confirmar compra? Indique 1 para SI o 0 para NO"))
     if (confirmar == 1) {
         nombreCliente = prompt("Ingrese su nombre y apellido")
@@ -129,7 +129,7 @@ if (totalVenta > 0){
     }
 
     //Primer validador de datos de envio | Ultima oportunidad de ingresar datos de envio | Sin datos de envio no se puede continuar con la compra
-    if ((confirmar == 1) && ((nombreCliente == "") || (ciudadEnvio == "") || (direccionEnvio == ""))){
+    if ((confirmar == 1) && ((nombreCliente == "") || (ciudadEnvio == "") || (direccionEnvio == ""))) {
         alert("Error! Ingrese los datos de envio por favor")
         nombreCliente = prompt("Ingrese su nombre y apellido")
         ciudadEnvio = prompt("Ciudad de Envio")
@@ -137,16 +137,16 @@ if (totalVenta > 0){
     }
 
     let continua = 0
-    //Proceso final - Si hay error en datos inrgesados. Se anulara el proceso.
-    if ((confirmar == 1) && ((nombreCliente == "") || (ciudadEnvio == "") || (direccionEnvio == ""))){
+        //Proceso final - Si hay error en datos inrgesados. Se anulara el proceso.
+    if ((confirmar == 1) && ((nombreCliente == "") || (ciudadEnvio == "") || (direccionEnvio == ""))) {
         alert("Error! No se han ingresado los datos necesarios. \nProceso Anulado. \nInciel proceso nuevamente")
         continua = 0
-    }else if ((confirmar == 1) && ((nombreCliente != "") || (ciudadEnvio != "") || (direccionEnvio != ""))){
+    } else if ((confirmar == 1) && ((nombreCliente != "") || (ciudadEnvio != "") || (direccionEnvio != ""))) {
         alert("Nombre del Cliente: " + nombreCliente + "\nCiudad de envio: " + ciudadEnvio + "\nDirección de Envio: " + direccionEnvio + "\nValor a Pagar: " + totalVenta)
         confirmar = parseInt(prompt("Indique Uno(1) para ir a pagar o cero (0) para finalizar"))
     }
     let clienteFinal = new cliente(nombreCliente, ciudadEnvio, direccionEnvio)
     console.log(clienteFinal)
-}else{
+} else {
     alert("No hay Productos para Pagar")
 }
