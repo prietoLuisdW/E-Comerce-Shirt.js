@@ -7850,9 +7850,7 @@ textarea.form-control-lg {
 
 .productos__articulo:hover {
   background-color: rgba(240, 240, 235, 0.5);
-  font-weight: bolder;
-  transform: scale(1.15);
-  transition: all 1s; }
+  font-weight: bolder; }
 
 .productos__articulo--info {
   display: flex;

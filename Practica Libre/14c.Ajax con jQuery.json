@@ -1,0 +1,19 @@
+{
+    "usuarios": [{
+            "nombre": "Juan Pablo Gomez",
+            "edad": 45,
+            "puesto": "Supervisor",
+            "antiguedad": 3,
+            "premios": null,
+            "vacaciones": "2 semanas"
+        },
+        {
+            "nombre": "Veronica Alberi",
+            "edad": 35,
+            "puesto": "Analista",
+            "antiguedad": 5,
+            "premios": 2,
+            "vacaciones": "3 semanas"
+        }
+    ]
+}
