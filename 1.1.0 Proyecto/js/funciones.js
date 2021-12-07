@@ -2,6 +2,9 @@
 let productosIndex
 let producto
 let misProductos
+let productoFiltrado
+let id
+let seccion
 
 $(document).ready(function() {
     importarProductos()
@@ -18,7 +21,6 @@ function importarProductos() {
             console.log("Mis Productos" + misProductos)
             productosIndex = misProductos.filter(articulo => articulo.marca == "index")
             renderizarIndex()
-            renderizarProductos()
         }
     })
 }
@@ -26,8 +28,8 @@ function importarProductos() {
 function renderizarIndex() {
     //for (let cajon of secciones) {
     //let productos = allProducts.filter(producto => producto.tipo == cajon.tipo)
-    for (producto of productosIndex) {
-        console.log("Index: " + productosIndex)
+    for (producto of misProductos) {
+        console.log("Index: " + misProductos)
             // contenedor
         $("#mostradorGeneral").append(`
                 <article class="card mx-1 col-lg-3 col-md-6 col-sm-12 my-3 pt-2 productos__articulo">
@@ -46,11 +48,28 @@ function renderizarIndex() {
     //}
 }
 
+let secciones = [
+    { id: 1, nombre: "blusas", mostrador: "#mostradorBlusas" },
+    { id: 1, nombre: "hodies", mostrador: "#mostradorHoddies" },
+    { id: 3, nombre: "joggers", mostrador: "#mostradorJoggers" },
+    { id: 4, nombre: "ninos", mostrador: "#mostradorNinos" },
+    { id: 5, nombre: "parejas", mostrador: "#mostradorParejas" },
+    { id: 6, nombre: "novedades", mostrador: "#mostradorNovedades" }
+]
 
-function renderizarProductos() {
+
+$(`#busos`).on("click", function() {
+    seccion = "hoddie"
+    $("#mostradorGeneral").slideUp()
+    renderizarProductos(seccion)
+})
+
+function renderizarProductos(seccion) {
     //for (let cajon of secciones) {
     //let productos = allProducts.filter(producto => producto.tipo == cajon.tipo)
-    for (producto of misProductos) {
+    productoFiltrado = misProductos.filter(articulo => articulo.tipo == seccion)
+    console.log("Productos Seccion: " + productoFiltrado)
+    for (producto of productoFiltrado) {
         // contenedor
         $(producto.seccion).append(`
                 <article class="card mx-1 col-lg-3 col-md-6 col-sm-12 my-3 pt-2 productos__articulo">
