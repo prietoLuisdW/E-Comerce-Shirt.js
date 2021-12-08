@@ -148,7 +148,7 @@ function renderizarCarrito() {
 
     $(".totalVenta").append(`
         <div class="d-flex justify-content-between">
-            <h5 class="fs-5"> Total Items: Comprados<h5>
+            <h5 class="fs-5"> Total Items Comprados<h5>
             <h5 class="fs-5"> ${items}<h5>
         </div>
         <div class="d-flex justify-content-between">
@@ -171,12 +171,15 @@ function renderizarCarrito() {
             <h5 class="fs-5"> Total a Pagar:<h5>
             <h5 class="fs-5 "> $${totalPagar}<h5>
         </div>
-        <div class="d-flex">
-        <a id="vaciar" class="m-2 btn btn-warning btn__carrito fs-5 w-100" href="bolsita.html">Vaciar el Carrito</a>
-        <button id="comprar" class="m-2 btn btn-success btn__carrito fs-5 w-100">Finalizar Compra</button>
+        <div class="d-flex vaciarComprar">
+            <a id="vaciar" class="m-2 btn btn-warning btn__carrito fs-5 w-100" href="bolsita.html">Vaciar el Carrito</a>
+            <button id="comprar" class="m-2 btn btn-success btn__carrito fs-5 w-100">Finalizar Compra</button>
         </div>`)
     $(`#vaciar`).on("click", function() {
         vaciarCarrito()
+    })
+    $(`#comprar`).on("click", function() {
+        finalizarCompra()
     })
     for (let articulo of elementos) {
         $("#articulosCarrito").append(`
@@ -220,4 +223,81 @@ function carritoLimpio() {
         Opps! No tenemos productos aún agregados
     </div>`)
 
+}
+
+//Para ingresar la informacion de envio y facturacion
+function finalizarCompra() {
+    $(".vaciarComprar").css("display", "none")
+    $(`#articulosCarrito`).prepend(`
+    <div class="row justify-content-center">
+        <form class="col-md-8 col-lg-8 col-sm-12 bg-light mx-4 p-5 my-4 ">
+            <fieldset>
+                <legend class="fs-5 fw-bold"> Datos del Cliente</legend>
+                <legend class="fs-6 fw-normal"> Ingrese los siguientes datos. Ten en cuenta que estos seran los considerados para hacer el nevio de sus productos y para la facturacion.
+                </legend>
+                <div class="row mb-1">
+                    <div class="col">
+                        <select id="tipoIdentificacion" class="form-select">
+						<option selected>Tipo de Identificación</option>
+						<option>Cedula de Ciudadania</option>
+						<option>Cedula de Extrajeria</option>
+						<option>Pasaporte</option>
+						<option>Permiso Especial</option>
+						</select>
+                    </div>
+                    <div class="col">
+                        <input type="text" id="numeroIdentificacion" class="form-control" placeholder="Numero de Identificación">
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Nombre (s)" aria-label="First name">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Apellido (s)" aria-label="Last name">
+                    </div>
+                </div>
+                <div class="mb-1 row">
+                    <div class="col">
+                        <input type="email" id="email" class="form-control" placeholder="Correo Electronico">
+                    </div>
+                </div>
+                <div class="mb-1 row">
+                    <div class="col">
+                        <input type="text" id="text" class="form-control" placeholder="Ciudad">
+                    </div>
+                    <div class="col">
+                        <input type="text" id="email" class="form-control" placeholder="Direccion de Envio">
+                    </div>
+                </div>
+                <div class="mb-1">
+                    <button id="logonPagar" type="submit" class="btn btn-dark gap-2">Pagar</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    `)
+    $(`#LogonPagar`).on("click", function() {
+        finalizado()
+    })
+}
+
+function finalizado() {
+    Swal.fire({
+        title: 'Gracias por tu Compra!',
+        text: "Te Enviaremos a nuestro Portal de Pagos. Desea ir a Pagar",
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, quiero pagar!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Perfecto',
+                'Nos veremos muy pronto',
+                'success'
+            )
+        }
+    })
 }
