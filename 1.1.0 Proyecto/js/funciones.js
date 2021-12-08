@@ -10,6 +10,8 @@ $(document).ready(function() {
     importarProductos()
 })
 
+// Importar los productos desde el Json y llamar la funcione de renderizar los mostradores
+// y los respectivos prodductos
 
 function importarProductos() {
     const miJson = "../json/productos.json"
@@ -18,75 +20,66 @@ function importarProductos() {
         console.log(status)
         if (status == "success") {
             misProductos = datos.productos
+            productoFiltrado = misProductos
             console.log("Mis Productos" + misProductos)
+            console.log("Mis Productos Filtrado" + productoFiltrado)
             productosIndex = misProductos.filter(articulo => articulo.marca == "index")
-            renderizarIndex()
+            mostradores()
         }
     })
+}
+
+let secciones = [
+    { id: 1, nombre: "Blusas", mostrador: "mostradorCamisetas", ruteo: "mosCamisetas" },
+    { id: 1, nombre: "Hodies", mostrador: "mostradorHoddies", ruteo: "mosHoddies" },
+    { id: 3, nombre: "Joggers", mostrador: "mostradorJoggers", ruteo: "mosJoggers" },
+    { id: 4, nombre: "Niños", mostrador: "mostradorNinos", ruteo: "mosNinos" },
+    { id: 5, nombre: "Parejas", mostrador: "mostradorParejas", ruteo: "mosParejas" },
+    { id: 6, nombre: "Novedades", mostrador: "mostradorNovedades", ruteo: "Novedades" }
+]
+
+//Crear los mostradores
+function mostradores() {
+    for (seccion of secciones) {
+        $("#misSecciones").append(`
+        <div>
+            <hr id=${seccion.ruteo} class="hr">
+            <h2 class="ps-2 fs-5 py-2 text-black bg-tittles titles__productos">${seccion.nombre}</h2>
+            <div class="container-fluid">
+                <div id=${seccion.mostrador} class="row mx-1 d-flex justify-content-around">
+                    
+                </div>
+            </div>
+        </div>
+        `)
+    }
+    renderizarIndex()
 }
 
 function renderizarIndex() {
     //for (let cajon of secciones) {
     //let productos = allProducts.filter(producto => producto.tipo == cajon.tipo)
-    for (producto of misProductos) {
-        console.log("Index: " + misProductos)
-            // contenedor
-        $("#mostradorGeneral").append(`
-                <article class="card mx-1 col-lg-3 col-md-6 col-sm-12 my-3 pt-2 productos__articulo">
-                    <img src=${producto.imagen} class="card-img-top"></img>
-                    <div class="card-body ">
-                        <h5 class="card-title text-center">${producto.nombre}</h5>
-                        <h5 class="card-title text-center">$ ${producto.precio}</h5>
-                        <button id=${producto.ref} class="btn btn-outline-warning btn__carrito fs-6">Comprar</button>
-                    </div>
-                </article>`)
-            //Agregar evento al boton
-        $(`#${producto.ref}`).on("click", function() {
-            agregarCarrito(producto)
-        })
-    }
-    //}
-}
-
-let secciones = [
-    { id: 1, nombre: "blusas", mostrador: "#mostradorBlusas" },
-    { id: 1, nombre: "hodies", mostrador: "#mostradorHoddies" },
-    { id: 3, nombre: "joggers", mostrador: "#mostradorJoggers" },
-    { id: 4, nombre: "ninos", mostrador: "#mostradorNinos" },
-    { id: 5, nombre: "parejas", mostrador: "#mostradorParejas" },
-    { id: 6, nombre: "novedades", mostrador: "#mostradorNovedades" }
-]
-
-
-$(`#busos`).on("click", function() {
-    seccion = "hoddie"
-    $("#mostradorGeneral").slideUp()
-    renderizarProductos(seccion)
-})
-
-function renderizarProductos(seccion) {
-    //for (let cajon of secciones) {
-    //let productos = allProducts.filter(producto => producto.tipo == cajon.tipo)
-    productoFiltrado = misProductos.filter(articulo => articulo.tipo == seccion)
-    console.log("Productos Seccion: " + productoFiltrado)
     for (producto of productoFiltrado) {
-        // contenedor
-        $(producto.seccion).append(`
+        console.log("Index: " + productoFiltrado)
+            // contenedor
+        $(producto.seccion).append(` 
                 <article class="card mx-1 col-lg-3 col-md-6 col-sm-12 my-3 pt-2 productos__articulo">
-                    <img src=${producto.imagen} class="card-img-top"></img>
-                    <div class="card-body ">
-                        <h5 class="card-title text-center">${producto.nombre}</h5>
-                        <h5 class="card-title text-center">$ ${producto.precio}</h5>
-                        <button id=${producto.ref} class="btn btn-outline-warning btn__carrito fs-6">Comprar</button>
-                    </div>
-                </article>`)
+                <img src=${producto.imagen} class="card-img-top"></img>
+                <div class="card-body">
+                <h5 class="card-title text-center">${producto.nombre}</h5>
+                <h5 class="card-title text-center">$ ${producto.precio}</h5>
+                <a id=${producto.ref} class="btn btn-outline-warning btn__carrito fs-6"> Comprar </a> 
+                </div> 
+                </article>
+                `)
             //Agregar evento al boton
         $(`#${producto.ref}`).on("click", function() {
             agregarCarrito(producto)
         })
     }
-    //}
 }
+
+
 
 let carrito
 
@@ -179,7 +172,7 @@ function renderizarCarrito() {
             <h5 class="fs-5 "> $${totalPagar}<h5>
         </div>
         <div class="d-flex">
-        <button id="vaciar" class="m-2 btn btn-warning btn__carrito fs-5 w-100">Vaciar el Carrito</button>
+        <a id="vaciar" class="m-2 btn btn-warning btn__carrito fs-5 w-100" href="bolsita.html">Vaciar el Carrito</a>
         <button id="comprar" class="m-2 btn btn-success btn__carrito fs-5 w-100">Finalizar Compra</button>
         </div>`)
     $(`#vaciar`).on("click", function() {
@@ -217,6 +210,7 @@ function vaciarCarrito() {
     $("#articulosCarrito").slideUp("slow")
     $(".totalVenta").hide()
     carritoLimpio()
+    renderizarCarrito()
 }
 
 //Si no hay elementos en el carrieto saldra una alerta
